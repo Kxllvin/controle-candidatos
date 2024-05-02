@@ -2,9 +2,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class ProcessoSeletivo {
     public static void main(String[] args) throws Exception {
-        analise(1900.0);
-        analise(2200.0);
-        analise(2000.0);
+        selecaoCandidatos();
     }
 
     static void selecaoCandidatos() {
@@ -14,8 +12,18 @@ public class ProcessoSeletivo {
         int candidatosSelecionados = 0;
         int candidatosAtual = 0;
         double salarioBase = 2000.0;
-        while(candidatosSelecionados < 5) {
+        while(candidatosSelecionados < 5 && candidatosAtual < candidatos.length) {
                 String candidato = candidatos[candidatosAtual];
+                double salarioPretendido = valorPretendido();
+
+            System.out.println("O candidato " + candidato + " Solicitou este valor de salário: R$ " + salarioPretendido);
+            if(salarioBase > salarioPretendido) {
+                System.out.println("O candidato " + candidato + " foi selecionado para a vaga.");
+                candidatosSelecionados++;
+            } else {
+                System.out.println("O candidato " + candidato + " não foi selecionado para a vaga.");
+            }
+            candidatosAtual++;
         }
     }
 
